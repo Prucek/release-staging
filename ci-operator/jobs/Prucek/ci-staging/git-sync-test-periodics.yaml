@@ -1,0 +1,9 @@
+periodics:
+- interval: 1h
+  agent: kubernetes
+  name: git-sync-source-echo-test
+  decorate: true
+  spec:
+    containers:
+    - image: alpine
+      command: ["/bin/sh", "-c", "echo 'Loaded from git-sync'; date"]
