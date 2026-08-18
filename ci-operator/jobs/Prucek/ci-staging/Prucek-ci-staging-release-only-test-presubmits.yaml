@@ -1,0 +1,21 @@
+presubmits:
+  Prucek/ci-staging:
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^release-only-test$
+    context: ci/prow/echo
+    decorate: true
+    name: pull-ci-Prucek-ci-staging-release-only-test-echo
+    rerun_command: /test echo
+    spec:
+      containers:
+      - command:
+        - echo
+        - "release-only job works!"
+        image: alpine
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+    trigger: (?m)^/test( | .* )echo,?($|\s.*)
