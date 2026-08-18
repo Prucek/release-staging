@@ -1,0 +1,22 @@
+presubmits:
+  Prucek/ci-staging:
+  - agent: kubernetes
+    always_run: true
+    branches:
+    - ^release-4\.15$
+    context: ci/prow/unit
+    decorate: true
+    name: pull-ci-Prucek-ci-staging-release-4.15-unit
+    rerun_command: /test unit
+    spec:
+      containers:
+      - args:
+        - --target=unit
+        command:
+        - ci-operator
+        image: quay-proxy.ci.openshift.org/openshift/ci:ci_ci-operator_latest
+        name: ""
+        resources:
+          requests:
+            cpu: 10m
+    trigger: (?m)^/test( | .* )unit,?($|\s.*)
